@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <classPathEntry location="D:\Program Files\apache-maven-repository\mysql\mysql-connector-java\5.1.48\mysql-connector-java-5.1.48.jar" />
+
+    <context id="MyBatis3" targetRuntime="MyBatis3">
+        <property name="javaFileEncoding" value="UTF-8" />
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/onlymihan?useunicode=true;characterEncoding=utf8"
+                        userId="root" password="123456">
+        </jdbcConnection>
+
+        <javaModelGenerator targetPackage="com.zhafei.onlymihan_scc.system.model" targetProject="D:\Program Files\IntelliJ IDEA 2019.3\Idea-workspace\onlymihan_scc\src\main\java">
+            <property name="enableSubPackages" value="true" />
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="mapper" targetProject="D:\Program Files\IntelliJ IDEA 2019.3\Idea-workspace\onlymihan_scc\src\main\resources">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <!-- XMLMAPPER SPRING -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.zhafei.onlymihan_scc.system.dao" targetProject="D:\Program Files\IntelliJ IDEA 2019.3\Idea-workspace\onlymihan_scc\src\main\java">
+        </javaClientGenerator>
+
+
+        <table tableName="mh_user" >
+            <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" />
+        </table>
+    </context>
+</generatorConfiguration>

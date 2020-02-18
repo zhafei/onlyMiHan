@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhafei.onlymihan_scc.system.dao.MhUserMapper" >
+  <resultMap id="BaseResultMap" type="com.zhafei.onlymihan_scc.system.model.MhUser" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="logintype" property="logintype" jdbcType="VARCHAR" />
+    <result column="openid" property="openid" jdbcType="VARCHAR" />
+    <result column="logintoken" property="logintoken" jdbcType="VARCHAR" />
+    <result column="nickname" property="nickname" jdbcType="VARCHAR" />
+    <result column="headimg" property="headimg" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="age" property="age" jdbcType="INTEGER" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, logintype, openid, logintoken, nickname, headimg, sex, age, phone, address
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zhafei.onlymihan_scc.system.model.MhUserExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from mh_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from mh_user
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from mh_user
+    where id = #{id}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zhafei.onlymihan_scc.system.model.MhUserExample" >
+    delete from mh_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zhafei.onlymihan_scc.system.model.MhUser" >
+    <selectKey resultType="java.lang.String" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into mh_user (id, logintype, openid, logintoken, nickname, headimg, sex, 
+      age, phone, address)
+    values (#{id}, #{logintype}, #{openid}, #{logintoken}, #{nickname}, #{headimg}, #{sex}, 
+      #{age}, #{phone}, #{address})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhafei.onlymihan_scc.system.model.MhUser" >
+<!--    <selectKey resultType="java.lang.String" keyProperty="id" order="BEFORE" >-->
+<!--      SELECT LAST_INSERT_ID()-->
+<!--    </selectKey>-->
+    insert into mh_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
+      <if test="logintype != null" >
+        logintype,
+      </if>
+      <if test="openid != null" >
+        openid,
+      </if>
+      <if test="logintoken != null" >
+        logintoken,
+      </if>
+      <if test="nickname != null" >
+        nickname,
+      </if>
+      <if test="headimg != null" >
+        headimg,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id},
+      <if test="logintype != null" >
+        #{logintype},
+      </if>
+      <if test="openid != null" >
+        #{openid},
+      </if>
+      <if test="logintoken != null" >
+        #{logintoken},
+      </if>
+      <if test="nickname != null" >
+        #{nickname},
+      </if>
+      <if test="headimg != null" >
+        #{headimg},
+      </if>
+      <if test="sex != null" >
+        #{sex},
+      </if>
+      <if test="age != null" >
+        #{age},
+      </if>
+      <if test="phone != null" >
+        #{phone},
+      </if>
+      <if test="address != null" >
+        #{address},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zhafei.onlymihan_scc.system.model.MhUserExample" resultType="java.lang.Integer" >
+    select count(*) from mh_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update mh_user
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id},
+      </if>
+      <if test="record.logintype != null" >
+        logintype = #{record.logintype},
+      </if>
+      <if test="record.openid != null" >
+        openid = #{record.openid},
+      </if>
+      <if test="record.logintoken != null" >
+        logintoken = #{record.logintoken},
+      </if>
+      <if test="record.nickname != null" >
+        nickname = #{record.nickname},
+      </if>
+      <if test="record.headimg != null" >
+        headimg = #{record.headimg},
+      </if>
+      <if test="record.sex != null" >
+        sex = #{record.sex},
+      </if>
+      <if test="record.age != null" >
+        age = #{record.age},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update mh_user
+    set id = #{record.id},
+      logintype = #{record.logintype},
+      openid = #{record.openid},
+      logintoken = #{record.logintoken},
+      nickname = #{record.nickname},
+      headimg = #{record.headimg},
+      sex = #{record.sex},
+      age = #{record.age},
+      phone = #{record.phone},
+      address = #{record.address}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhafei.onlymihan_scc.system.model.MhUser" >
+    update mh_user
+    <set >
+      <if test="logintype != null" >
+        logintype = #{logintype},
+      </if>
+      <if test="openid != null" >
+        openid = #{openid},
+      </if>
+      <if test="logintoken != null" >
+        logintoken = #{logintoken},
+      </if>
+      <if test="nickname != null" >
+        nickname = #{nickname},
+      </if>
+      <if test="headimg != null" >
+        headimg = #{headimg},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex},
+      </if>
+      <if test="age != null" >
+        age = #{age},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone},
+      </if>
+      <if test="address != null" >
+        address = #{address},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhafei.onlymihan_scc.system.model.MhUser" >
+    update mh_user
+    set logintype = #{logintype},
+      openid = #{openid},
+      logintoken = #{logintoken},
+      nickname = #{nickname},
+      headimg = #{headimg},
+      sex = #{sex},
+      age = #{age},
+      phone = #{phone},
+      address = #{address}
+    where id = #{id}
+  </update>
+</mapper>
